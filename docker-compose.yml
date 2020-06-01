@@ -1,18 +1,31 @@
-tinc:
-  image: vimagick/tinc
-  ports:
-    - "655:655/tcp"
-    - "655:655/udp"
-  volumes:
-    - ./tinc:/etc/tinc
-  environment:
-    - IP_ADDR=136.244.85.157
-    - ADDRESS=10.20.30.1
-    - NETMASK=255.255.255.0
-    - NETWORK=10.20.30.0/24
-    - RUNMODE=server
-  cap_add:
-    - NET_ADMIN
-  dns: 8.8.8.8
-  restart: always
-  container_name: tinc
+version: "3.7"
+services:
+  tinc:
+    image: vimagick/tinc
+    ports:
+      - "655:655/tcp"
+      - "655:655/udp"
+    volumes:
+      - ./tinc:/etc/tinc
+    environment:
+      - IP_ADDR=136.244.85.157
+      - ADDRESS=10.20.30.1
+      - NETMASK=255.255.255.0
+      - NETWORK=10.20.30.0/24
+      - RUNMODE=server
+    cap_add:
+      - NET_ADMIN
+    network_mode: host
+#    networks:
+#      default:
+#        ipv4_address: 172.18.0.2
+    dns: 8.8.8.8
+    restart: always
+    container_name: tinc
+
+#networks:
+#  default:
+#    ipam:
+#      driver: default
+#      config:
+#        - subnet: 172.18.0.1/24
