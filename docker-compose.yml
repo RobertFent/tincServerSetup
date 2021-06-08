@@ -8,7 +8,7 @@ services:
     volumes:
       - ./tinc:/etc/tinc
     environment:
-      - IP_ADDR=136.244.85.157
+      - IP_ADDR=$SERVER_IP
       - ADDRESS=10.20.30.1
       - NETMASK=255.255.255.0
       - NETWORK=10.20.30.0/24
